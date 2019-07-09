@@ -120,9 +120,9 @@ RPCClient.prototype.call = function call(body) {
             replyTo: this.rpcQueues.replyQueueName
         }, err => {
             if (err !== null) {
-                this.logger.error(`${this.description} Channel send request failed. correlationId = ${correlationId}`)
+                this.logger.error(`${this.description} Channel send request failed. correlationId = ${correlationId}, err = ${err}`)
 
-                requestDefer.reject(`${this.description} unavailable`)
+                requestDefer.reject(`${this.description} unavailable. ${err}`)
             } else {
                 this.logger.info(`${this.description} Channel send request success. correlationId = ${correlationId}`)
             }
@@ -132,15 +132,15 @@ RPCClient.prototype.call = function call(body) {
 }
 
 function build(options) {
-    options.host = options.host || 'localhost'
-    options.port = options.port || 5672
+    options.host = options.host || defaultOptions.host
+    options.port = options.port || defaultOptions.port
 
     if ((typeof options.requestQueueName) !== 'string') {
         throw Error('Options requestQueueName is required.')
     }
 
-    options.logger = options.logger || pino()
-    options.func = options.func || 'default'
+    options.logger = options.logger || defaultOptions.logger
+    options.func = options.func || defaultOptions.func
 
     return new RPCClient(options.host, options.port, options.requestQueueName, options.logger, options.func)
 }
