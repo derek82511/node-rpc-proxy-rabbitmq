@@ -4,8 +4,7 @@
   "description": "Simple Node.js fastify rpc proxy implementation with rabbitmq.",
   "main": "app.js",
   "scripts": {
-    "dev": "fastify start -p 3000 -l trace app.js",
-    "start": "fastify start -p 3000 -l info app.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "Derek Chang <derek82511@gmail.com>",
@@ -13,9 +12,6 @@
   "dependencies": {
     "amqplib": "^0.5.3",
     "fastify": "^2.6.0",
-    "fastify-autoload": "^1.0.0",
-    "fastify-cli": "^1.0.0",
-    "fastify-plugin": "^1.6.0",
     "moment": "^2.24.0",
     "pino": "^5.12.6",
     "uuid": "^3.3.2",

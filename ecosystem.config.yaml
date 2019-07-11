@@ -1,0 +1,7 @@
+apps:
+  - script: ./app.js
+    name: "node-rpc-proxy-rabbitmq"
+    instances: 4
+    exec_mode: cluster
+    out_file: ./logs/out.log
+    error_file: ./logs/error.log
