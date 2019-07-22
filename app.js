@@ -15,7 +15,6 @@ for (let func in requestFuncs) {
     rpcClients[func] = RPCClient({
         host: requestFuncs[func].host,
         port: requestFuncs[func].port,
-        requestQueueName: requestFuncs[func].requestQueueName,
         logger: fastify.log,
         func: func
     })

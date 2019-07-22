@@ -1,9 +1,7 @@
 requestFuncs:
   test1:
-    host: 127.0.0.1
-    port: 5672
-    requestQueueName: rpc_queue_test1
-  test2:
-    host: 127.0.0.1
-    port: 5672
-    requestQueueName: rpc_queue_test2
+    host: master.openshift.webcomm.com.tw
+    port: 31646
+  # test2:
+  #   host: master.openshift.webcomm.com.tw
+  #   port: 31646
