@@ -1,0 +1,32 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: node-rpc-proxy-rabbitmq
+  name: node-rpc-proxy-rabbitmq
+spec:
+  replicas: 1
+  selector:
+    app: node-rpc-proxy-rabbitmq
+    deploymentconfig: node-rpc-proxy-rabbitmq
+  template:
+    metadata:
+      labels:
+        app: node-rpc-proxy-rabbitmq
+        deploymentconfig: node-rpc-proxy-rabbitmq
+    spec:
+      containers:
+        - env:
+            - name: TZ
+              value: Asia/Taipei
+          image: derek82511/node-rpc-proxy-rabbitmq:1.0.0
+          imagePullPolicy: IfNotPresent
+          name: node-rpc-proxy-rabbitmq
+          volumeMounts:
+            - mountPath: /app/config
+              name: app-config
+              readOnly: true
+      volumes:
+        - name: app-config
+          configMap:
+            name: node-rpc-proxy-rabbitmq-config

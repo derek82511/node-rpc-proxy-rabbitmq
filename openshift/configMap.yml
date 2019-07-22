@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: node-rpc-proxy-rabbitmq-config
+data:
+  config-func.yaml: |
+    requestFuncs:
+      test1:
+        host: rabbitmq-cluster
+        port: 5672
