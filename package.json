@@ -1,6 +1,6 @@
 {
   "name": "node-rpc-proxy-rabbitmq",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Simple Node.js fastify rpc proxy implementation with rabbitmq.",
   "main": "app.js",
   "scripts": {
