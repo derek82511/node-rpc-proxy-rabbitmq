@@ -26,7 +26,7 @@ docker run -it \
   -e "TZ=Asia/Taipei" \
   -v [path to your func config yaml]:/app/config/config-func.yaml \
   --name node-rpc-proxy-rabbitmq \
-  derek82511/node-rpc-proxy-rabbitmq:1.0.0
+  derek82511/node-rpc-proxy-rabbitmq:1.1.0
 ```
 
 # Testing
