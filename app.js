@@ -1,3 +1,4 @@
+const os = require('os');
 const ConfigProvider = require('./lib/config-provider')
 const RPCClient = require('./lib/rpc-client')
 
@@ -6,6 +7,8 @@ const fastify = require('fastify')({
         level: 'info'
     }
 })
+
+const instanceId = `${os.hostname()}-${(typeof (process.env.pm_id) === 'undefined' ? 'default' : process.env.pm_id)}`
 
 const requestFuncs = ConfigProvider.funcConfig.requestFuncs
 
@@ -16,13 +19,14 @@ for (let func in requestFuncs) {
         host: requestFuncs[func].host,
         port: requestFuncs[func].port,
         logger: fastify.log,
-        func: func
+        func: func,
+        instanceId: instanceId
     })
     rpcClients[func].start()
 }
 
 fastify.get('/', function (request, reply) {
-    reply.send('node-rpc-client-rabbitmq')
+    reply.send(`node-rpc-client-rabbitmq instanceId = ${instanceId}`)
 })
 
 fastify.post('/rpc', function (request, reply) {
@@ -50,19 +54,33 @@ fastify.post('/rpc', function (request, reply) {
 })
 
 fastify.get('/health', function (request, reply) {
-    if (!request.query.func) {
+    for (var func in rpcClients) {
+        if (!rpcClients[func].checkStatus()) {
+            return reply.code(503).send({
+                status: 'DOWN'
+            })
+        }
+    }
+
+    reply.code(200).send({
+        status: 'UP'
+    })
+})
+
+fastify.get('/health/:func', function (request, reply) {
+    if (!request.params.func) {
         return reply.code(400).send({
             error: `func is required`
         })
     }
 
-    if (!request.query.func || !rpcClients[request.query.func]) {
+    if (!request.params.func || !rpcClients[request.params.func]) {
         return reply.code(400).send({
-            error: `func ${request.query.func} is not registered`
+            error: `func ${request.params.func} is not registered`
         })
     }
 
-    let status = rpcClients[request.query.func].checkStatus()
+    let status = rpcClients[request.params.func].checkStatus()
 
     if (status) {
         reply.code(200).send({
