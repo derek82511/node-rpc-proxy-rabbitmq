@@ -1,11 +1,11 @@
-This is a node.js fastify api proxy which implements rpc client to rabbitmq.
+This is a node.js rpc proxy implementation with rabbitmq.
 
 Docker Hub: [https://hub.docker.com/r/derek82511/node-rpc-proxy-rabbitmq](https://hub.docker.com/r/derek82511/node-rpc-proxy-rabbitmq)
 
 GitHub: [https://github.com/derek82511/node-rpc-proxy-rabbitmq](https://github.com/derek82511/node-rpc-proxy-rabbitmq)
 
 # Use Node.js
-First, modify config/config-func.yaml according to your rpc infos.
+First, modify config/config-func.yaml, config/config-protocol.yaml according to your rpc infos.
 
 ```console
 npm install
