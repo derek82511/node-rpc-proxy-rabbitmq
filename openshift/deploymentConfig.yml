@@ -19,7 +19,7 @@ spec:
         - env:
             - name: TZ
               value: Asia/Taipei
-          image: derek82511/node-rpc-proxy-rabbitmq:1.0.0
+          image: derek82511/node-rpc-proxy-rabbitmq:1.1.0
           imagePullPolicy: IfNotPresent
           name: node-rpc-proxy-rabbitmq
           volumeMounts:
