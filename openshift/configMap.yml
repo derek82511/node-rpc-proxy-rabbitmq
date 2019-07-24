@@ -8,3 +8,5 @@ data:
       test1:
         host: rabbitmq-cluster
         port: 5672
+  config-protocol.yaml: |
+    protocol: http
