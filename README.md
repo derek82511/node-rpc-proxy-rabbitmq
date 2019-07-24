@@ -24,7 +24,7 @@ curl -X POST \
 docker run -it \
   -p 3000:3000 \
   -e "TZ=Asia/Taipei" \
-  -v [path to your func config yaml]:/app/config/config-func.yaml \
+  -v [path to your func config folder]:/app/config \
   --name node-rpc-proxy-rabbitmq \
   derek82511/node-rpc-proxy-rabbitmq:latest
 ```
