@@ -1,0 +1,7 @@
+# http,https,http2,https2,grpc
+protocol: http
+
+# Required by protocol https,https2
+ssl:
+  keyPath: /path/to/key
+  certPath: /path/to/cert

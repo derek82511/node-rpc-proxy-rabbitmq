@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+service RPCService {
+  rpc index(Empty) returns (Response) {}
+  rpc rpc(Request) returns (Response) {}
+  rpc health(Request) returns (Response) {}
+}
+
+message Empty {}
+
+message Request {
+  string func = 1;
+  string body = 2;
+}
+
+message Response {
+  string body = 1;
+  string error = 2;
+}
